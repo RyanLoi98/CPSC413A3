@@ -17,17 +17,24 @@ class Game:
         takeRight = True
         # Do the calculation
 
+        # base case when there are no coins left
         if(len(self.coins) == 0):
+            # max_win will be 0, margin will be 0, and takeRight = true by default
             return (max_win, margin, takeRight)
 
+        # base case when there start index = end index
         elif (start == end):
+            # max_win will be the value of this last coin
             max_win += self.coins[start]
+            # margin will be the value of this lat coin
             margin += self.coins[start]
-
+            # return max_win, margin, and takeRight = true by default
             return (max_win, margin, takeRight)
 
 
 
+        # check data structure
+        
         # max_left = recurse left
         # max_right = recurse right
 
