@@ -32,9 +32,12 @@ class Game:
             return (max_win, margin, takeRight)
 
 
+        # check data structure, if at this start and end index it isn't -1 then it has a previous calculated value
+        # so we will utilize this value
+        if(self.dataStruct[start][end] != -1):
+            return self.dataStruct[start][end]
 
-        # check data structure
-        
+
         # max_left = recurse left
         # max_right = recurse right
 
