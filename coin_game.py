@@ -40,7 +40,7 @@ class Game:
 
         # recursive calls
 
-        # if we picked the left coin
+        # if current player picked the left coin
 
         # get value of left coin at start index
         leftCoinValue = self.coins[start]
@@ -53,7 +53,26 @@ class Game:
         # opponent picks right, so this is the value we get if we recurse on the array after their pick
         # start index + 1 because we picked left and so we must remove a coin from the left, end index is end - 1
         # because the opponent takes a coin from the right
-        LOppRight = self.run((start + 1), end - 1)
+        LOppRight = self.run((start + 1), (end - 1))
+
+
+
+
+        # if current player picked the right coin
+
+        # get value of right coin at end index
+        RightCoinValue = self.coins[end]
+
+        # opponent picks left, so this is the value we get if we recurse on the array after their pick
+        # start index + 1 because the opponent picks left, and end index is end - 1 because current player picked right
+        ROppLeft = self.run((start + 1), (end - 1))
+
+        # opponent picks right, start index is start because no one picked left, end index is end - 2 because both the
+        # current player and the opponent picked right
+        ROppRight = self.run(start, (end - 2))
+
+
+
 
 
 
@@ -61,7 +80,7 @@ class Game:
 
 
         # store recursive data into data structure
-
+        self.dataStruct[start][end] = (max_win, margin, takeRight)
 
 
 
