@@ -121,28 +121,21 @@ class Game:
 
 
 
-        # pick the max value current player can get, which is the max between right and left
+        # if left max value > right, assign the max_win, margin, and take right to be based on the left recursion
         if(left > right):
-
-
+            max_win = left
+            margin = Lmargin
+            takeRight = False
+        # otherwise if right >= left, assign the max_win, margin, and take right to be based on the right recursion
+        else:
+            max_win = right
+            margin = Rmargin
+            takeRight = True
 
         # store recursive data into data structure
         self.dataStruct[start][end] = (max_win, margin, takeRight)
 
-
-
-        # margin is value of our coin - value of the coin opponent picks to minimize our score
-
-        # max += max of max_left and max_right
-
-        # if max left > max right
-        # take_right = false
-
-
-
-        # store data into data structure
-
+        # return values
         return (max_win, margin, takeRight)
 
 
-Game([1,2])
