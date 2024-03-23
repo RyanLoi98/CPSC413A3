@@ -56,6 +56,21 @@ class Game:
         LOppRight = self.run((start + 1), (end - 1))
 
 
+        #variable for left margin
+        Lmargin = 0
+
+
+        # pick the array that yields the smallest total coin value after the opponent makes their pick, because the
+        # the opponent is also trying to win!
+        if(LOppLeft < LOppRight):
+            # left margin is the left coin value - the opponent's left coin
+            Lmargin = leftCoinValue - self.coins[start + 1]
+
+        # if LOppLeft >= LoppRight we will take LOppRight, especially when both are equal because we take right by default
+        else:
+            # left margin is the left coin value - the opponent's right coin
+            Lmargin = leftCoinValue - self.coins[end]
+
 
 
         # if current player picked the right coin
