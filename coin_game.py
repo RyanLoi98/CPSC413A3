@@ -38,19 +38,43 @@ class Game:
             return self.dataStruct[start][end]
 
 
-        # max_left = recurse left
-        # max_right = recurse right
+        # recursive calls
+
+        # if we picked the left coin
+
+        # get value of left coin at start index
+        leftCoinValue = self.coins[start]
+
+        # opponent also picks left, so this is the value we get if we recurse on the array after their pick
+        # start index + 2 because both current player and opponent picks left so we must remove 2 coins from the left
+        # end index doesn't change
+        LOppLeft = self.run((start + 2), end)
+
+        # opponent picks right, so this is the value we get if we recurse on the array after their pick
+        # start index + 1 because we picked left and so we must remove a coin from the left, end index is end - 1
+        # because the opponent takes a coin from the right
+        LOppRight = self.run((start + 1), end - 1)
+
+
+
+
+
+
+        # store recursive data into data structure
+
+
+
+
+        # margin is value of our coin - value of the coin opponent picks to minimize our score
 
         # max += max of max_left and max_right
-
-        # margin +=
 
         # if max left > max right
         # take_right = false
 
 
-        # need a base case
-        # need data storage structure?
+
+        # store data into data structure
 
         return (max_win, margin, takeRight)
 
