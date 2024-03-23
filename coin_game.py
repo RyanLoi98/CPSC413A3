@@ -40,6 +40,11 @@ class Game:
 
         # recursive calls
 
+        # variables to hold the result of recursing left and right
+        left = 0
+        right = 0
+
+
         # if current player picked the left coin
 
         # get value of left coin at start index
@@ -65,12 +70,15 @@ class Game:
         if(LOppLeft < LOppRight):
             # left margin is the left coin value - the opponent's left coin
             Lmargin = leftCoinValue - self.coins[start + 1]
+            # value of recursing left is now based on the min array LOppLeft
+            left = LOppLeft + leftCoinValue
 
-        # if LOppLeft >= LoppRight we will take LOppRight, especially when both are equal because we take right by default
+        # if LOppLeft >= LOppRight we will take LOppRight, especially when both are equal because we take right by default
         else:
             # left margin is the left coin value - the opponent's right coin
             Lmargin = leftCoinValue - self.coins[end]
-
+            # value of recursing left is now based on the min array LOppRight
+            left = LOppRight + leftCoinValue
 
 
         # if current player picked the right coin
@@ -87,9 +95,23 @@ class Game:
         ROppRight = self.run(start, (end - 2))
 
 
+        # variable for the right margin
+        Rmargin = 0
 
+        # pick the array that yields the smallest total coin value after the opponent makes their pick, because the
+        # the opponent is also trying to win!
+        if (ROppLeft < ROppRight):
+            # Right margin is the Right coin value - the opponent's left coin
+            Rmargin = RightCoinValue - self.coins[start + 1]
+            # value of recursing right is now based on the min array ROppLeft
+            right = ROppLeft + RightCoinValue
 
-
+        # if ROppLeft >= ROppRight we will take ROppRight, especially when both are equal because we take right by default
+        else:
+            # Right margin is the Right coin value - the opponent's right coin
+            Rmargin = RightCoinValue - self.coins[end-1]
+            # value of recursing right is now based on the min array ROppRight
+            right = ROppRight + RightCoinValue
 
 
 
