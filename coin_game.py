@@ -11,15 +11,21 @@ class Game:
         self.dataStruct = [[(-1, -1, -1) for row in range(n)] for column in range(n)]
 
 
+    # function to run the coin game with the algorithm discussed in class
+    # takes an instance of self, a start index, and an end index. Returns a tuple: (max_win, margin, takeRight)
     def run(self, start, end):
-        # index variables
+        # varaibles to access the returned tuple
         maxWinIndex = 0
         marginIndex = 1
         takeRightIndex = 2
 
 
+        # variable fpr max total sum that can be won by the current player even if the opponent plays optimally
         max_win = 0
+        # margin by with which the current player will win by even if the opponent plays optimally
         margin = 0
+        # indicates which coin the current player should take for their next move to obtain the maximum (true = right
+        # false = left)
         takeRight = True
         # Do the calculation
 
