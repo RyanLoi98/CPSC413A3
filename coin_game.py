@@ -1,4 +1,3 @@
-import numpy as numpy
 class Game:
     # initialization function
     def __init__(self, coins):
@@ -6,9 +5,10 @@ class Game:
         self.coins = coins
         # variable n for length of coin array + 1, this will be the size of column and rows of our 2-D array.
         n = len(coins) + 1
-        # use numpy to create n x n 2-D array initialized to -1. This will be used as the data structure to hold
-        # previously calculated sub-problems and avoid having to recalculate them
-        self.dataStruct = -1 * numpy.ones((n, n))
+
+        # Using list comprehension to create n x n 2-D array with each element initialized to (-1, -1, -1). This will be
+        # used as the data structure to hold previously calculated sub-problems and avoid having to recalculate them.
+        self.dataStruct = [[(-1, -1, -1) for row in range(n)] for column in range(n)]
 
 
     def run(self, start, end):
@@ -23,12 +23,12 @@ class Game:
         takeRight = True
         # Do the calculation
 
-        # base case when there are no coins left
-        if(len(self.coins) == 0):
+        # base case when there are no coins left, and this occurs when the start index > end index or vice versa
+        if((start > end) or (end < start)):
             # max_win will be 0, margin will be 0, and takeRight = true by default
             return (max_win, margin, takeRight)
 
-        # base case when there start index = end index
+        # base case when there is only one coin left start index = end index
         elif (start == end):
             # max_win will be the value of this last coin
             max_win += self.coins[start]
@@ -40,7 +40,7 @@ class Game:
 
         # check data structure, if at this start and end index it isn't -1 then it has a previous calculated value
         # so we will utilize this value
-        if(self.dataStruct[start][end] != -1):
+        if(self.dataStruct[start][end] != (-1, -1, -1)):
             return self.dataStruct[start][end]
 
 
@@ -115,7 +115,7 @@ class Game:
         # if ROppLeft >= ROppRight we will take ROppRight, especially when both are equal because we take right by default
         else:
             # Right margin is the Right coin value - the opponent's right coin
-            Rmargin = RightCoinValue - self.coins[end-1]
+            Rmargin = RightCoinValue - self.coins[end - 1]
             # value of recursing right is now based on the min array ROppRight
             right = ROppRight[maxWinIndex] + RightCoinValue
 
@@ -138,4 +138,11 @@ class Game:
         # return values
         return (max_win, margin, takeRight)
 
+
+
+coingame = Game([4, 4, 9, 4, 1, 2, 3])
+print(coingame.run(0, 3)) # (13, 5, False)
+print(coingame.run(0, 4)) # (12, 2, False)
+print(coingame.run(2, 2)) # (9, 9, True)
+print(coingame.run(4, 6)) # (4, 2, True)
 
