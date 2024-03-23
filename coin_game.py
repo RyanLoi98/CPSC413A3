@@ -24,7 +24,7 @@ class Game:
         # Do the calculation
 
         # base case when there are no coins left, and this occurs when the start index > end index or vice versa
-        if((start > end) or (end < start)):
+        if((start > end) or (end < start) or (len(self.coins) == 0)):
             # max_win will be 0, margin will be 0, and takeRight = true by default
             return (max_win, margin, takeRight)
 
@@ -148,6 +148,8 @@ class Game:
 
 # Tests, Remove before submission
 
+print("Testing Prof's tests:")
+
 coingame = Game([4, 4, 9, 4, 1, 2, 3])
 print(coingame.run(0, 3)) # (13, 5, False)
 print(coingame.run(0, 4)) # (12, 2, False)
@@ -155,4 +157,95 @@ print(coingame.run(2, 2)) # (9, 9, True)
 print(coingame.run(4, 6)) # (4, 2, True)
 
 print(coingame.run(1,3)) # (8, -1, True)
+print(coingame.run(1,0)) # (0, 0, True)
 
+try:
+    assert coingame.run(0, 3) == (13, 5, False)
+    assert coingame.run(0, 4) == (12, 2, False)
+    assert coingame.run(2, 2) == (9, 9, True)
+    assert coingame.run(4, 6) == (4, 2, True)
+    assert coingame.run(1, 3) == (8, -1, True)
+    assert coingame.run(1, 0) == (0, 0, True)
+    print("All tests passed!")
+except AssertionError:
+    print("Test failed!")
+
+
+print("\n")
+print("Testing No coin game:")
+coingame_empty = Game([])
+try:
+    assert coingame_empty.run(0, 0) == (0, 0, True)
+    print("All tests passed!")
+except AssertionError:
+    print("Test failed!")
+
+
+print("\n")
+print("Testing 1 coin game:")
+coingame_1 = Game([5])
+try:
+    assert coingame_1.run(0, 0) == (5, 5, True)
+    print("All tests passed!")
+except AssertionError:
+    print("Test failed!")
+
+
+print("\n")
+print("Testing 2 coin game:")
+coingame_2 = Game([5,6])
+try:
+    assert coingame_2.run(0, 1) == (6, 1, True)
+    assert coingame_2.run(0, 0) == (5, 5, True)
+    assert coingame_2.run(1, 1) == (6, 6, True)
+    print("All tests passed!")
+except AssertionError:
+    print("Test failed!")
+
+
+print("\n")
+print("Testing 3 coin game:")
+coingame_3 = Game([5,6,7])
+try:
+    assert coingame_3.run(0, 2) == (12, 6, True)
+    assert coingame_3.run(1, 1) == (6, 6, True)
+    assert coingame_3.run(2, 2) == (7, 7, True)
+    assert coingame_3.run(0, 1) == (6, 1, True)
+    assert coingame_3.run(1, 2) == (7, 1, True)
+
+    print("All tests passed!")
+except AssertionError:
+    print("Test failed!")
+
+
+print("\n")
+print("Testing Large values coin game:")
+coingame_large_values = Game([1000, 2000, 3000, 4000])
+try:
+    assert coingame_large_values.run(0, 3) == (6000, 2000, True)
+    print("All tests passed!")
+except AssertionError:
+    print("Test failed!")
+
+
+
+print("\n")
+print("Testing start index > end index:")
+coingame_invalid_index = Game([1000, 2000, 3000, 4000])
+try:
+    assert coingame_invalid_index.run(3, 1) == (0, 0, True)
+    assert coingame_invalid_index.run(4, -1) == (0, 0, True)
+    print("All tests passed!")
+except AssertionError:
+    print("Test failed!")
+
+
+print("\n")
+print("Testing left:")
+coingame_left = Game([5000, 4000, 3000, 2000])
+try:
+    assert coingame_left.run(0, 3) == (8000, 2000, False)
+
+    print("All tests passed!")
+except AssertionError:
+    print("Test failed!")
