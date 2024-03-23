@@ -108,7 +108,7 @@ class Game:
         # the opponent is also trying to win!
         if (ROppLeft[maxWinIndex] < ROppRight[maxWinIndex]):
             # Right margin is the Right coin value - the opponent's left coin
-            Rmargin = RightCoinValue - self.coins[start + 1]
+            Rmargin = RightCoinValue - self.coins[start]
             # value of recursing right is now based on the min array ROppLeft
             right = ROppLeft[maxWinIndex] + RightCoinValue
 
@@ -145,4 +145,6 @@ print(coingame.run(0, 3)) # (13, 5, False)
 print(coingame.run(0, 4)) # (12, 2, False)
 print(coingame.run(2, 2)) # (9, 9, True)
 print(coingame.run(4, 6)) # (4, 2, True)
+
+print(coingame.run(1,3)) # (8, -1, True)
 
