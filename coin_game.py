@@ -74,15 +74,17 @@ class Game:
         # pick the array that yields the smallest total coin value after the opponent makes their pick, because the
         # the opponent is also trying to win!
         if(LOppLeft[maxWinIndex] < LOppRight[maxWinIndex]):
-            # left margin is the left coin value - the opponent's left coin
-            Lmargin = leftCoinValue - self.coins[start + 1]
+            # left margin is the recursive margin from current player pick left and the opponent picking left +
+            # left coin value - the opponent's left coin value
+            Lmargin = LOppLeft[marginIndex] + leftCoinValue - self.coins[start + 1]
             # value of recursing left is now based on the min array LOppLeft
             left = LOppLeft[maxWinIndex] + leftCoinValue
 
         # if LOppLeft >= LOppRight we will take LOppRight, especially when both are equal because we take right by default
         else:
-            # left margin is the left coin value - the opponent's right coin
-            Lmargin = leftCoinValue - self.coins[end]
+            # left margin is the recursive margin from current player pick left and the opponent picking right + left
+            # coin value - opponent's right coin
+            Lmargin = LOppRight[marginIndex] + leftCoinValue - self.coins[end]
             # value of recursing left is now based on the min array LOppRight
             left = LOppRight[maxWinIndex] + leftCoinValue
 
@@ -107,15 +109,17 @@ class Game:
         # pick the array that yields the smallest total coin value after the opponent makes their pick, because the
         # the opponent is also trying to win!
         if (ROppLeft[maxWinIndex] < ROppRight[maxWinIndex]):
-            # Right margin is the Right coin value - the opponent's left coin
-            Rmargin = RightCoinValue - self.coins[start]
+            # right margin is the recursive margin from current player pick right and the opponent picking left + right
+            # coin value - opponent's left coin
+            Rmargin = ROppLeft[marginIndex] + RightCoinValue - self.coins[start]
             # value of recursing right is now based on the min array ROppLeft
             right = ROppLeft[maxWinIndex] + RightCoinValue
 
         # if ROppLeft >= ROppRight we will take ROppRight, especially when both are equal because we take right by default
         else:
-            # Right margin is the Right coin value - the opponent's right coin
-            Rmargin = RightCoinValue - self.coins[end - 1]
+            # right margin is the recursive margin from current player pick right and the opponent picking right + right
+            # coin value - opponent's right coin
+            Rmargin = ROppRight[marginIndex]+ RightCoinValue - self.coins[end - 1]
             # value of recursing right is now based on the min array ROppRight
             right = ROppRight[maxWinIndex] + RightCoinValue
 
@@ -139,6 +143,10 @@ class Game:
         return (max_win, margin, takeRight)
 
 
+
+
+
+# Tests, Remove before submission
 
 coingame = Game([4, 4, 9, 4, 1, 2, 3])
 print(coingame.run(0, 3)) # (13, 5, False)
