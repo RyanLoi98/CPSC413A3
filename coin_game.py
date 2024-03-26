@@ -30,7 +30,7 @@ class Game:
         # Do the calculation
 
 
-        # input validation check
+        # input validation check, if start and end satisfies the conditional it is invalid so return 0 for everything
         if ((start > len(self.coins)) or (end > len(self.coins)) or (end < 0) or (start < 0)):
             # max_win will be 0, margin will be 0, and takeRight = true by default
             return (max_win, margin, takeRight)
