@@ -29,14 +29,21 @@ class Game:
         takeRight = True
         # Do the calculation
 
+
+        # input validation check
+        if ((start > len(self.coins)) or (end > len(self.coins)) or (end < 0) or (start < 0)):
+            # max_win will be 0, margin will be 0, and takeRight = true by default
+            return (max_win, margin, takeRight)
+
+
         # check data structure, if at this start and end index it isn't -1 then it has a previous calculated value
         # so we will utilize this value
         if (self.dataStruct[start][end] != (-1, -1, -1)):
             return self.dataStruct[start][end]
 
         # base case when there are no coins left, and this occurs when the start index > end index or vice versa and
-        # include when the indices are out of range of the coin array just for input validation sake
-        if((start > end) or (end < start) or (len(self.coins) == 0) or (start > len(self.coins)) or (end > len(self.coins)) or (end < 0) or (start <0)):
+        # when the length of coins = 0
+        if((start > end) or (end < start) or (len(self.coins) == 0)):
             # max_win will be 0, margin will be 0, and takeRight = true by default
             return (max_win, margin, takeRight)
 
