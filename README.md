@@ -98,4 +98,4 @@ To use this program:
 
 ## Screenshot of the Program in use:
 
-![Coin Game Example](https://imgur.com/mpHPT1q.png)
+![Coin Game Example](https://imgur.com/FYpxEyt.png)
