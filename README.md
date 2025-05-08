@@ -1,8 +1,5 @@
 ## Optimal Coin Game
 
-![Coin Game Example](https://imgur.com/mpHPT1q.png)
-
-
 This is my CPSC 413 (Design and Analysis of Algorithms I - Winter 2024) assignment 3 question #3 at the University of Calgary.
 
 This Program implements a dynamic programming solution to the classic two-player optimal coin-picking game. Given an array of coin values, this Python 3 program determines the best strategy for the current player to maximize their winnings assuming both players play optimally.
@@ -98,3 +95,7 @@ To use this program:
     ```bash
    python3 a3test.py
    ```
+
+### Screenshot of the Program in use:
+
+![Coin Game Example](https://imgur.com/mpHPT1q.png)
