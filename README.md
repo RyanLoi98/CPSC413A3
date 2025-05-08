@@ -1,4 +1,4 @@
-## Optimal Coin Game
+# Optimal Coin Game
 
 This is my CPSC 413 (Design and Analysis of Algorithms I - Winter 2024) assignment 3 question #3 at the University of Calgary.
 
@@ -8,7 +8,7 @@ The core logic is implemented in the `Game` class using memoization to avoid red
 
 ---
 
-### Problem Description:
+## Problem Description:
 
 Given a list of positive integer coin values and two indices `start` and `end`, the function determines:
 
@@ -20,7 +20,7 @@ This solution uses a top-down recursive approach with memoization via a 2D data 
 
 ---
 
-### Sample Usage:
+## Sample Usage:
 
 ```python
 coingame = Game([4, 4, 9, 4, 1, 2, 3])
@@ -30,7 +30,7 @@ print(coingame.run(2, 2))  # Output: (9, 9, True)
 
 ---
 
-### Features:
+## Features:
 
 * Optimized recursive dynamic programming with memoization
 * Efficient handling of overlapping subproblems
@@ -39,14 +39,14 @@ print(coingame.run(2, 2))  # Output: (9, 9, True)
 
 ---
 
-### Technologies:
+## Technologies:
 
 * Python 3
 * No external dependencies
 
 ---
 
-### Educational Value:
+## Educational Value:
 
 This project demonstrates the application of dynamic programming techniques and game theory principles to develop an optimal solution for a competitive decision-making problem. The problem and its solution are inspired by topics in algorithm design, recursion, and optimal substructure.
 
@@ -56,7 +56,7 @@ Thanks! Based on your updated code structure, here’s a corrected and polished 
 
 ---
 
-### **Usage Instructions for the Coin Game Program**
+## **Usage Instructions for the Coin Game Program**
 
 To use this program:
 
@@ -96,6 +96,6 @@ To use this program:
    python3 a3test.py
    ```
 
-### Screenshot of the Program in use:
+## Screenshot of the Program in use:
 
 ![Coin Game Example](https://imgur.com/mpHPT1q.png)
